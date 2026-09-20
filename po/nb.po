@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-05 09:26+0200\n"
-"PO-Revision-Date: 2026-09-19 13:28+0200\n"
+"PO-Revision-Date: 2026-09-20 22:29+0200\n"
 "Last-Translator: Hans Petter Birkeland <hpbirkeland@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
-"X-Poedit-Bookmarks: 2822,-1,-1,-1,-1,-1,-1,2362,1305,-1\n"
+"X-Poedit-Bookmarks: 4798,-1,-1,-1,-1,-1,-1,2362,1305,-1\n"
 
 #: ../build/bin/conf_gen.h:156
 msgctxt "preferences"
@@ -6361,7 +6361,7 @@ msgstr "filterspredning"
 #: ../build/lib/darktable/plugins/introspection_spektrafilm.c:636
 #: ../build/lib/darktable/plugins/introspection_spektrafilm.c:989
 msgid "print diffusion halo warmth"
-msgstr "diffusjonshaloens varme ved print"
+msgstr "diffusjonsgloriens varme ved print"
 
 #: ../build/lib/darktable/plugins/introspection_spektrafilm.c:642
 #: ../build/lib/darktable/plugins/introspection_spektrafilm.c:993
@@ -17899,9 +17899,9 @@ msgid "%u model is too old for this version of darktable and must be updated"
 msgid_plural ""
 "%u models are too old for this version of darktable and must be updated"
 msgstr[0] ""
-" %u modell er for gammel for denne versjonen av darktable og må oppdateres"
+"%u modell er for gammel for denne versjonen av darktable og må oppdateres"
 msgstr[1] ""
-" %u modeller er for gammel for denne versjonen av darktable og må oppdateres"
+"%u modeller er for gammel for denne versjonen av darktable og må oppdateres"
 
 #: ../src/gui/preferences_ai.c:769
 #, c-format
@@ -17914,7 +17914,13 @@ msgid_plural ""
 "\n"
 "%d repositories could not be reached, so there may be more"
 msgstr[0] ""
+"%s\n"
+"\n"
+"%d depot kunne ikke nås, så det kan være flere"
 msgstr[1] ""
+"%s\n"
+"\n"
+"%d depoter kunne ikke nås, så det kan være flere"
 
 #: ../src/gui/preferences_ai.c:784
 #, fuzzy
@@ -17943,7 +17949,7 @@ msgstr "nedlasting av modeller feilet"
 
 #: ../src/gui/preferences_ai.c:1321
 msgid "retrieving the list of models…"
-msgstr ""
+msgstr "henter listen over modeller…"
 
 #: ../src/gui/preferences_ai.c:1343
 #, fuzzy
@@ -17986,14 +17992,17 @@ msgid ""
 "\n"
 "installing it from %s replaces those files"
 msgstr ""
+"\"%s\" er allerede installert fra %s.\n"
+"\n"
+"installasjon fra %s erstatter disse filene"
 
 #: ../src/gui/preferences_ai.c:1476
 msgid "this repository offers no models for this version of darktable"
-msgstr ""
+msgstr "dette depotet tilbyr ingen modeller for denne versjonen av darktable"
 
 #: ../src/gui/preferences_ai.c:1478
 msgid "repository not usable"
-msgstr ""
+msgstr "depotet er ikke brukbart"
 
 #: ../src/gui/preferences_ai.c:1489
 #, fuzzy
@@ -18009,6 +18018,10 @@ msgid ""
 "it is not maintained or reviewed by the darktable project, and a model "
 "installed from it replaces any installed model of the same name"
 msgstr ""
+"%s tilbyr %d modell(er) for denne versjonen av darktable\n"
+"\n"
+"det er ikke vedlikeholdt eller vurdert av darktable-prosjektet, og en modell "
+"som installeres derfra erstatter hvilken som helst modell med det samme navnet"
 
 #: ../src/gui/preferences_ai.c:1567
 #, fuzzy
@@ -18018,7 +18031,7 @@ msgstr "en forhåndsinnstilling med dette navnet finnes fra før!"
 
 #: ../src/gui/preferences_ai.c:1618
 msgid "repositories"
-msgstr ""
+msgstr "depoter"
 
 #: ../src/gui/preferences_ai.c:1653
 #, fuzzy
@@ -18083,7 +18096,7 @@ msgstr "behandle forhåndsinnstillinger..."
 
 #: ../src/gui/preferences_ai.c:1830
 msgid "add or remove the repositories models can be installed from"
-msgstr ""
+msgstr "legg til eller fjern depoter som modeller kan installeres fra"
 
 #: ../src/gui/preferences_ai.c:1913
 msgid "install AI models"
@@ -18215,6 +18228,9 @@ msgid ""
 "models.\n"
 "when off, updates are only looked for when you press the button below"
 msgstr ""
+"kontakt modelldepotene for å se etter nyere versjoner av de installerte "
+"modellene.\n"
+"når av blir oppdateringer bare sett etter når du trykker på knappen under"
 
 #. provider dropdown
 #: ../src/gui/preferences_ai.c:2515
@@ -18300,13 +18316,15 @@ msgstr "installer en modell fra en lokal .dtmodel-fil"
 
 #: ../src/gui/preferences_ai.c:2857
 msgid "install from repository…"
-msgstr ""
+msgstr "installer fra depot…"
 
 #: ../src/gui/preferences_ai.c:2859
 msgid ""
 "browse every model the configured repository offers for this version of "
 "darktable, including any not listed above"
 msgstr ""
+"bla gjennom alle modellene det konfigurerte depotet tilbyr for denne "
+"versjonen av darktable, inkludert de som ikke er listet opp over"
 
 #. delete selected button
 #: ../src/gui/preferences_ai.c:2870
@@ -21081,7 +21099,7 @@ msgstr "15:10 svart postkort"
 
 #: ../src/iop/borders.c:857
 msgid "increase border size to enable the frame line"
-msgstr ""
+msgstr "øk kantstørrelse for å aktivere rammelinjen"
 
 #: ../src/iop/borders.c:859
 #, fuzzy
@@ -22347,7 +22365,7 @@ msgstr "bredformat"
 
 #: ../src/iop/clipping.c:2138 ../src/iop/crop.c:1283
 msgid "1.91:1"
-msgstr ""
+msgstr "1.91:1"
 
 #: ../src/iop/clipping.c:2139
 msgid "2:1, univisium"
@@ -24135,7 +24153,7 @@ msgid ""
 msgstr ""
 "juster filterets kantfølsomhet\n"
 "høyere = bedre bevaring av kanter\n"
-"lavere = jevnere overganger, men kan føre til haloer rundt kanter"
+"lavere = jevnere overganger, men kan føre til glorier rundt kanter"
 
 #: ../src/iop/contrastntexture.c:450
 msgid ""
@@ -28362,12 +28380,12 @@ msgstr "blanding av effekt"
 #: ../src/iop/spektrafilm.c:435
 msgctxt "section"
 msgid "still"
-msgstr ""
+msgstr "foto"
 
 #: ../src/iop/spektrafilm.c:439
 msgctxt "section"
 msgid "cine"
-msgstr ""
+msgstr "film"
 
 #: ../src/iop/spektrafilm.c:443
 #, fuzzy
@@ -28378,29 +28396,35 @@ msgstr "egendefinert"
 
 #: ../src/iop/spektrafilm.c:625
 msgid "spektrafilm"
-msgstr ""
+msgstr "spektrafilm"
 
 #: ../src/iop/spektrafilm.c:630
 msgid "film simulation|analog|spectral|grain|halation|print"
-msgstr ""
+msgstr "filmsimulering|analog|spektral|korn|grain|halation|halasjon|print"
 
 #: ../src/iop/spektrafilm.c:637
 msgid ""
 "simulates the physical process of developing and printing analog film,\n"
 "using spectral emulsion and paper data from the spektrafilm project"
 msgstr ""
+"simulerer den fysiske prosessen for fremkalling og kopiering av analog film\n"
+"ved å bruke spektrale emulsjons- og papirdata fra spektrafilmprosjektet"
 
 #: ../src/iop/spektrafilm.c:1140
 msgid ""
 "this data pack was made for a newer version of darktable\n"
 "update darktable to use it"
 msgstr ""
+"denne datapakken ble laget for en nyere versjon av darktable\n"
+"oppdater darktable for å bruke den"
 
 #: ../src/iop/spektrafilm.c:1143
 msgid ""
 "this data pack is too old for this version of darktable\n"
 "use the download button to fetch a current one"
 msgstr ""
+"denne datapakken er for gammel for denne versjonen av darktable\n"
+"bruk nedlastingsknappen for å hente en nyere"
 
 #: ../src/iop/spektrafilm.c:1145
 msgid ""
@@ -28408,24 +28432,33 @@ msgid ""
 "it may have downloaded incompletely -- use the download button to fetch it "
 "again"
 msgstr ""
+"datapakken kunne ikke leses\n"
+"den kan være ufullstendig nedlastet – bruk nedlastingsknappen for å hente den "
+"igjen"
 
 #: ../src/iop/spektrafilm.c:1176
 msgid ""
 "no data pack installed\n"
 "use the download button in the module to fetch one"
 msgstr ""
+"ingen datapakke er installert\n"
+"bruk nedlastingsknappen i modulen for å hente en"
 
 #: ../src/iop/spektrafilm.c:1191
 msgid ""
 "the installed data pack contains no film stocks\n"
 "it may have downloaded incompletely -- try fetching it again"
 msgstr ""
+"den installerte datapakken inneholder ingen filmtyper\n"
+"den kan være ufullstendig nedlastet – prøv å hente den igjen"
 
 #: ../src/iop/spektrafilm.c:1213
 msgid ""
 "the installed data pack contains no print papers\n"
 "it may have downloaded incompletely -- try fetching it again"
 msgstr ""
+"den installerte datapakken inneholder ingen printpapir\n"
+"den kan være ufullstendig nedlastet – prøv å hente den igjen"
 
 #: ../src/iop/spektrafilm.c:1254
 #, fuzzy
@@ -28444,10 +28477,13 @@ msgid ""
 "recorded: %08x    installed: %s (%08x)\n"
 "the matching pack can be fetched with the button below"
 msgstr ""
+"fremkalt med en annen spektraltabell\n"
+"registrert: %08x    installert: %s (%08x)\n"
+"den matchende pakkenb kan hentes med knappen under"
 
 #: ../src/iop/spektrafilm.c:2895
 msgid "print paper. not used: the film is being scanned directly."
-msgstr ""
+msgstr "printpapir. ikke i bruk: filmen skannes direkte."
 
 #: ../src/iop/spektrafilm.c:2900
 #, fuzzy, c-format
@@ -28461,10 +28497,12 @@ msgid ""
 "print paper. \"auto\" follows the film stock's own target print,\n"
 "currently %s. picking a paper pins it until you select auto again."
 msgstr ""
+"printpapir. \"auto\" følger filmtypens eget målpapir,\n"
+"for øyeblikket %s. valg av papir låser det til du velger auto igjen."
 
 #: ../src/iop/spektrafilm.c:2910
 msgid "print paper. \"auto\" follows the film stock's own target print."
-msgstr ""
+msgstr "printpapir. \"auto\" følger filmtypens eget målpapir."
 
 #: ../src/iop/spektrafilm.c:3016
 #, c-format
@@ -28472,6 +28510,8 @@ msgid ""
 "development time, in minutes. snaps to the nearest time %s is\n"
 "characterised at: %s min. 0 uses the stock's own default (%.3g min)."
 msgstr ""
+"fremkallingstid, i minutter, festes til den nærmeste tiden %s er\n"
+"beregnet for: %s min. 0 bruker filmens egen standard (%.3g min)."
 
 #: ../src/iop/spektrafilm.c:3023
 msgid ""
@@ -28481,6 +28521,8 @@ msgid ""
 "single-emulsion B&W stocks are the ones that carry a family:\n"
 "Double-X at 4/5/6.5/9/12 min, print film 2302 at 2/3.5/5/7/9 min."
 msgstr ""
+"fremkallingstid. denne filmen er beregnet for en enkelt fremkallingsmetode, "
+"så det er ikke noe å velge."
 
 #: ../src/iop/spektrafilm.c:3259 ../src/libs/metadata.c:1163
 msgid "cancel"
@@ -28488,11 +28530,11 @@ msgstr "avbryt"
 
 #: ../src/iop/spektrafilm.c:3321
 msgid "the table this edit was developed with is not installed"
-msgstr ""
+msgstr "tabellen denne redigeringen ble fremkalt med er ikke installert"
 
 #: ../src/iop/spektrafilm.c:3322
 msgid "no data pack installed -- the module's controls appear once one is"
-msgstr ""
+msgstr "ingen datapakke installert – modulens kontroller kommer fram når en er"
 
 #: ../src/iop/spektrafilm.c:3323 ../src/iop/spektrafilm.c:4391
 #, fuzzy
@@ -28502,7 +28544,7 @@ msgstr "last ned alle"
 
 #: ../src/iop/spektrafilm.c:3325
 msgid "fetch the matching spectral data pack over the network"
-msgstr ""
+msgstr "hent den matchende spektraldatapakken over nettverket"
 
 #: ../src/iop/spektrafilm.c:3390
 #, fuzzy
@@ -28512,7 +28554,7 @@ msgstr "ikke vurdert"
 
 #: ../src/iop/spektrafilm.c:3392
 msgid "data mismatch"
-msgstr ""
+msgstr "uoverensstemmende data"
 
 #: ../src/iop/spektrafilm.c:3525
 #, fuzzy
@@ -28540,11 +28582,11 @@ msgstr "hopp over bleking"
 
 #: ../src/iop/spektrafilm.c:3634
 msgid "film|cinema"
-msgstr ""
+msgstr "film|kino"
 
 #: ../src/iop/spektrafilm.c:3673
 msgid "look|kino 250D"
-msgstr ""
+msgstr "look|kino 250D"
 
 #: ../src/iop/spektrafilm.c:3688
 #, fuzzy
@@ -28572,7 +28614,7 @@ msgstr "filmbase"
 
 #: ../src/iop/spektrafilm.c:3785
 msgid "film|warm"
-msgstr ""
+msgstr "film|varm"
 
 #: ../src/iop/spektrafilm.c:3806
 #, fuzzy
@@ -28588,7 +28630,7 @@ msgstr "lokal kontrast"
 
 #: ../src/iop/spektrafilm.c:3850
 msgid "look|vivid"
-msgstr ""
+msgstr "look|livlig"
 
 #: ../src/iop/spektrafilm.c:3877
 #, fuzzy
@@ -28598,7 +28640,7 @@ msgstr "Svart/hvitt"
 
 #: ../src/iop/spektrafilm.c:3908
 msgid "look|foliage"
-msgstr ""
+msgstr "look|bladverk"
 
 #: ../src/iop/spektrafilm.c:3944
 #, fuzzy
@@ -28649,11 +28691,11 @@ msgstr "ingen printere funnet!"
 #. Data -2 keeps it clear of -1 (auto) and of the list positions below.
 #: ../src/iop/spektrafilm.c:4001
 msgid "none (scan the film)"
-msgstr ""
+msgstr "ingen (skann filmen)"
 
 #: ../src/iop/spektrafilm.c:4005
 msgid "auto (follow film stock)"
-msgstr ""
+msgstr "auto (følg filmtypen)"
 
 #: ../src/iop/spektrafilm.c:4022
 #, fuzzy
@@ -28669,7 +28711,7 @@ msgstr "på valget:"
 
 #: ../src/iop/spektrafilm.c:4420
 msgid "film emulsion (spektrafilm filming profile)"
-msgstr ""
+msgstr "filmemulsjon (spektrafilm filmingsprofil)"
 
 #: ../src/iop/spektrafilm.c:4426
 msgid ""
@@ -28677,6 +28719,9 @@ msgid ""
 "print stage, which is the natural mode for positive and reversal\n"
 "stocks; \"auto\" uses the paper named in the film stock's profile."
 msgstr ""
+"printpapir. \"ingen\" viser den fremkalte filmen direkte uten\n"
+"printstadiet, som er den naturlige metoden for positive og omvendertyper;\n"
+"\"auto\" bruker papiret som er nevnt i filmtypens profil."
 
 #: ../src/iop/spektrafilm.c:4429
 #, fuzzy
@@ -28691,6 +28736,13 @@ msgid ""
 "preset names a film gauge (35mm) while the slider is the frame's\n"
 "long edge (36mm). both describe the same format."
 msgstr ""
+"vanlige forhåndsinnstillinger for filmport/sensorstørrelse; ved å velge en "
+"settes\n"
+"glideren for lengste side under (velg \"egendefinert\" for å angi en nøyaktig "
+"verdi).\n"
+"forhåndsinnstillingen angir en filmstørrelse (35 mm) mens glideren er "
+"bildets\n"
+"lengste side (36 mm). begge beskriver det samme formatet."
 
 #: ../src/iop/spektrafilm.c:4452
 #, fuzzy
@@ -28705,6 +28757,9 @@ msgid ""
 "shows every one of them proportionally larger for the same\n"
 "print size."
 msgstr ""
+"fysisk bildestørrelse, lengste side. angir skalaen som korn, spredning,\n"
+"halasjon og diffusjon beregnes fra, så et mindre format viser\n"
+"alle proporsjonalt større for samme printstørrelse."
 
 #. ---- tab 1: film (exposure + development) ----
 #: ../src/iop/spektrafilm.c:4473
@@ -28726,10 +28781,14 @@ msgid ""
 "exposure follows automatically so this has no net brightness effect\n"
 "(except on positive/reversal film, which has no print stage)."
 msgstr ""
+"eksponeringskompensasjon for film; med automatisk printeksponering aktivert\n"
+"følger printeksponeringen automatisk så dette har ingen netto effekt på "
+"lysheten\n"
+"(unntatt på positiv/omvenderfilm, som ikke har noe printstadium)."
 
 #: ../src/iop/spektrafilm.c:4491
 msgid " stops"
-msgstr ""
+msgstr "blendertrinn"
 
 #: ../src/iop/spektrafilm.c:4494
 msgid ""
@@ -28741,11 +28800,17 @@ msgid ""
 "Stacks with the granular gamma controls below for\n"
 "further fine-tuning."
 msgstr ""
+"press- (positiv) eller dra- (negativ) prosessering: skyt ved en effektiv\n"
+"ISO forskjellig fra original verdi, deretter under- eller overfremkall for\n"
+"å kompensere. kombinerer en eksponeringsforskyvning med en avledet\n"
+"økning/reduksjon i kontrast (omtrentlig: det nøyaktige forholdet avhenger av\n"
+"den spesifikke film/fremkallerkombinasjonen, som ikke er modellert her).\n"
+"Legges til gammakontrollene under for videre finjustering."
 
 #: ../src/iop/spektrafilm.c:4502 ../src/iop/spektrafilm.c:4717
 msgctxt "section"
 msgid "chemistry"
-msgstr ""
+msgstr "kjemi"
 
 #: ../src/iop/spektrafilm.c:4505 ../src/iop/spektrafilm.c:4720
 #, fuzzy
@@ -28758,6 +28823,8 @@ msgid ""
 "development time. snaps to the nearest time the stock was\n"
 "characterised at; 0 uses the stock's own default."
 msgstr ""
+"fremkallingstid. fester til den nærmeste tiden filmtypen ble\n"
+"beregnet for; 0 bruker filmens egen standard."
 
 #: ../src/iop/spektrafilm.c:4516
 msgid ""
@@ -28765,6 +28832,9 @@ msgid ""
 "extended or reduced development time, as in push/pull processing;\n"
 "1.0 = normal development."
 msgstr ""
+"kontrast i den samlede fremkallingen (endrer filmens tetthetskurver).\n"
+"utvidet eller redusert fremkallingstid, som i press/dra-prosessering;\n"
+"1.0 = normal fremkalling."
 
 #: ../src/iop/spektrafilm.c:4524
 msgid ""
@@ -28772,10 +28842,13 @@ msgid ""
 "only, independent of the slow layer, since push/pull processing\n"
 "doesn't always affect every sub-layer equally."
 msgstr ""
+"kontrast i bare det raskeste (mest lyssensitive) emulsjonslaget,\n"
+"uavhengig av det trege laget, siden press/dra-prosessering\n"
+"ikke alltid påvirker hvert lag likt."
 
 #: ../src/iop/spektrafilm.c:4532
 msgid "contrast of the mid and slow emulsion sub-layers"
-msgstr ""
+msgstr "kontrast for de middels og trege emulsjonslagene"
 
 #: ../src/iop/spektrafilm.c:4537
 msgid ""
@@ -28783,6 +28856,9 @@ msgid ""
 "the highlight shoulder toward a self-limiting rolloff without\n"
 "shifting midgray (0 = off)."
 msgstr ""
+"lokal reduksjon av fremkaller i tette (sterkt eksponerte) områder:\n"
+"mykner overgangen fra høylysene mot en selvbegrensende avrunding,\n"
+"uten å forskyve mellomgrått (0 = av)."
 
 #. One mechanism, six controls, and the two spread values read as sharpening, not as colour --
 #. enough of a group, and enough of a surprise, to
@@ -28790,19 +28866,23 @@ msgstr ""
 #: ../src/iop/spektrafilm.c:4544
 msgctxt "section"
 msgid "DIR couplers"
-msgstr ""
+msgstr "DIR-koblere"
 
 #: ../src/iop/spektrafilm.c:4548
 msgid ""
 "overall coupler strength: inter-layer inhibition drives saturation\n"
 "and edge effects (1.0 = film-accurate, 0 = off)."
 msgstr ""
+"samlet koblerstyrke: hemming mellom lag driver metning\n"
+"og kanteffekter (1.0 = film-nøyaktig, 0 = av)."
 
 #: ../src/iop/spektrafilm.c:4554
 msgid ""
 "how strongly a layer inhibits its own development. raising it\n"
 "flattens contrast within each channel."
 msgstr ""
+"hvor sterkt et lag hemmer sin egen fremkalling, heving av denne\n"
+"gjør kontrasten flatere innenfor hver kanal."
 
 #: ../src/iop/spektrafilm.c:4560
 msgid ""
@@ -28810,10 +28890,13 @@ msgid ""
 "that produces the saturation couplers are known for; at 0 the\n"
 "channels develop independently."
 msgstr ""
+"hvor sterkt hvert lag hemmer de andre to. dette er delen\n"
+"som produserer metningen koblere er kjent for; ved 0\n"
+"fremkalles kanalene uavhengig."
 
 #: ../src/iop/spektrafilm.c:4567 ../src/iop/spektrafilm.c:4580
 msgid " µm"
-msgstr ""
+msgstr " µm"
 
 #: ../src/iop/spektrafilm.c:4570
 msgid ""
@@ -28826,6 +28909,14 @@ msgid ""
 "\n"
 "re-seeded from the film stock's own value whenever you change film."
 msgstr ""
+"hvor langt den frigjorte hemmeren sprer seg gjennom emulsjonen.\n"
+"\n"
+"det er dette som gjør koblerne til en kanteffekt: en vid spredning\n"
+"lar et lyst område holde tilbake fremkallingen godt utenfor sin egen kant,\n"
+"som leses som økt klarhet eller skjerping. gjør den kortere for en mykere,\n"
+"mer rent tonal koblerrespons; 5-20 µm er det brukbare området.\n"
+"\n"
+"blir nullstilt basert på filmens egen verdi hver gang du bytter film."
 
 #: ../src/iop/spektrafilm.c:4583
 msgid ""
@@ -28835,11 +28926,16 @@ msgid ""
 "it is what gives large bright areas a broad, gentle falloff. set the\n"
 "weight to 0 to drop it entirely."
 msgstr ""
+"lengden på den lange, svake halen til spredningen over, som bærer\n"
+"hemmeren mye lengre ved lav vekt.\n"
+"\n"
+"det er dette som gir store lyse områder en bred, forsiktig avrunding.\n"
+"sett vekten til 0 for å kutte den helt ut."
 
 #: ../src/iop/spektrafilm.c:4591
 msgid ""
 "the share of the inhibitor that travels in the long tail. 0 removes the tail."
-msgstr ""
+msgstr "andelen av hemmeren som spres i den lange halen. 0 fjerner halen."
 
 #. The diffusion filter sits in front of the taking lens, so it belongs with
 #. the rest of the film stage rather than on a tab of its own.
@@ -28858,6 +28954,10 @@ msgid ""
 "pro-mist (broader, pastel, atmospheric) / cinebloom (frame-wide,\n"
 "slow-decaying veil)."
 msgstr ""
+"type diffusjonsfilter: black pro-mist (konsentrert, kraftig glorie,\n"
+"dyp svart) / glimmerglass (tett, forsiktig, bevarer skarphet) /\n"
+"pro-mist (bredere, pastell, atmosfærisk) / cinebloom (et slør som\n"
+"dekker hele bildet, og som avtar gradvis)."
 
 #: ../src/iop/spektrafilm.c:4623
 msgid ""
@@ -28869,6 +28969,13 @@ msgid ""
 "the halo is added on top of the unfiltered image, so raising this\n"
 "lifts shadows and lowers contrast as well as glowing the highlights."
 msgstr ""
+"hvor mye lys avledes inn i diffusjonsglorien (0 = off).\n"
+"\n"
+"disse filtrene selges i blendertrinn: 1/8 = 0.125, 1/4 = 0.25, 1/2 = 0.5,\n"
+"så 1 og 2. rulling og piltaster flytter en åttendedel av gangen.\n"
+"\n"
+"glorien legges til over det ufiltrerte bildet, så å øke denne\n"
+"løfter skygger og senker kontrast i tillegg til å gløde høylysene."
 
 #: ../src/iop/spektrafilm.c:4634
 msgid ""
@@ -28876,12 +28983,17 @@ msgid ""
 "unchanged; it is spread further from each highlight. use diffusion\n"
 "strength to change the amount."
 msgstr ""
+"skalerer diffusjonsgloriens radius. mengden lys er uendret;\n"
+"det spres lenger fra hvert høylys. \n"
+"bruk diffusjonsstyrke for å endre mengden."
 
 #: ../src/iop/spektrafilm.c:4640
 msgid ""
 "diffusion halo warmth: >0 warm outer halo, <0 cool (added on top of\n"
 "the selected filter's own warmth bias)."
 msgstr ""
+"diffusjonsgloriens varme: >0 varm ytre glorie, <0 kjølig (lagt til over\n"
+"det valgte filterets egne varmeforskyvning)."
 
 #. The knobs to reach for last: the adaptation switches change how faithful
 #. the model is, not what the look is, and quality trades accuracy for
@@ -28901,6 +29013,11 @@ msgid ""
 "\"exact spectral\" skips the table and runs the model per pixel. CPU\n"
 "only, and slow."
 msgstr ""
+"spektral nøyaktighet vs hastighet: fargemodellen evalueres mot en tabell\n"
+"av denne størrelsen og PCHIP-interpoleres mellom punktene, så en finere\n"
+"tabell lander nærmere det nøyaktige svaret og koster mer å bygge.\n"
+"\"nøyaktig spektral\" hopper over tabellen og kjører modellen pr piksel.\n"
+"Kun CPU, og treg."
 
 #: ../src/iop/spektrafilm.c:4665
 msgid ""
@@ -28910,6 +29027,11 @@ msgid ""
 "and best left on: it is part of how the stock is characterised. no\n"
 "effect on stocks whose profile carries no bandpass."
 msgstr ""
+"første halvdel av filmens følsomhetstilpasning: et spektralt båndpass-\n"
+"filter tilføres filmens egne følsomheter, runder av UV- og IR-endene\n"
+"til hver kanal mens hvitbalansen bevares. på som standard,\n"
+"og best beholdt på: det er en del av hvordan filmen er beregnet.\n"
+"ingen effekt på filmer hvis profil ikke har båndpassfilter."
 
 #: ../src/iop/spektrafilm.c:4674
 msgid ""
@@ -28919,6 +29041,11 @@ msgid ""
 "saturated colours substantially. no effect on stocks whose profile\n"
 "carries no surface (the monochrome films and every print paper)."
 msgstr ""
+"andre halvdel av filmens følsomhetstilpasning: en pr farge\n"
+"eksponeringskorreksjon på opp til to blendertrinn, null ved filmens\n"
+"eget hvittpunkt og økende med avstanden derfra. av som standard:\n"
+"den vrir mettede farger kraftig. ingen effekt på filmer hvis profil \n"
+"ikke har en overflate (monokrome filmer og alle papir)."
 
 #: ../src/iop/spektrafilm.c:4683
 msgid ""
@@ -28934,6 +29061,17 @@ msgid ""
 "are clipped by whatever comes next in the pipeline, which loses the\n"
 "separation between them and can shift their hue."
 msgstr ""
+"dra farger som utgangsprofilen ikke kan holde på innsiden\n"
+"langs en kurve som beholder alt allerede på innsiden urørt.\n"
+"\n"
+"å skru den av viser hvor filmen produserer farger profilen\n"
+"ikke har plass til: de forlater området, så darktables\n"
+"klippeindikator markerer dem og mengden av overskyting\n"
+"er synlig.\n"
+"\n"
+"la den være på for et bilde du vil beholde. av vil mettede farger\n"
+"klippes av det som kommer etter i prosesseringskjeden, som\n"
+"mister separasjonen mellom dem og kan vri fargetonene deres."
 
 #: ../src/iop/spektrafilm.c:4703
 #, fuzzy
@@ -28948,16 +29086,24 @@ msgid ""
 "exposure to affect brightness directly, same as a fixed enlarger\n"
 "exposure time."
 msgstr ""
+"kompenser automatisk for endringer i filmeksponeringen ved kopiering,\n"
+"som en virkelig printer ville printe til en fast tetthet; deaktiver hvis "
+"film-\n"
+"eksponeringen skal påvirke lysheten direkte, på samme måte som en fast "
+"eksponeringstid \n"
+"i et forstørrelsesapparat."
 
 #: ../src/iop/spektrafilm.c:4715
 msgid "print contrast (morphs the paper's density curves)"
-msgstr ""
+msgstr "kopikontrast (morfer papirets tetthetskurver)"
 
 #: ../src/iop/spektrafilm.c:4724
 msgid ""
 "print development time. snaps to the nearest time the paper was\n"
 "characterised at; 0 uses its own default."
 msgstr ""
+"fremkallingstid for kopien. fester til den nærmeste tiden papiret\n"
+"ble beregnet til; 0 bruker papirets egen standardverdi."
 
 #: ../src/iop/spektrafilm.c:4728
 #, fuzzy
@@ -28969,15 +29115,15 @@ msgstr "gjentakelser"
 #: ../src/iop/spektrafilm.c:4731 ../src/iop/spektrafilm.c:4736
 #: ../src/iop/spektrafilm.c:4757 ../src/iop/spektrafilm.c:4765
 msgid " CC"
-msgstr ""
+msgstr " CC"
 
 #: ../src/iop/spektrafilm.c:4733
 msgid "magenta enlarger filtration, Kodak CC units from neutral"
-msgstr ""
+msgstr "magenta forstørrerfiltrering, Kodak CC-enheter fra nøytral"
 
 #: ../src/iop/spektrafilm.c:4738
 msgid "yellow enlarger filtration, Kodak CC units from neutral"
-msgstr ""
+msgstr "gul forstørrerfiltrering, Kodak CC-enheter fra nøytral"
 
 #: ../src/iop/spektrafilm.c:4742
 #, fuzzy
@@ -28992,22 +29138,31 @@ msgid ""
 "through the film's base density, before the main print exposure.\n"
 "lifts shadows and reduces contrast (0 = off)."
 msgstr ""
+"forhåndseksponering: en kort eksponering av kopien gjennom filmens \n"
+"grunnleggende tetthet, før kopiens hovedeksponering.\n"
+"løfter skygger og reduserer kontrast (0 = av)."
 
 #: ../src/iop/spektrafilm.c:4759
 msgid ""
 "magenta filtration for the preflash exposure only, Kodak CC units\n"
 "from neutral, independent of the main enlarger filtration above."
 msgstr ""
+"magenta filtrering bare for forhåndseksponeringen, Kodak CC-enheter\n"
+"fra nøytral, uavhengig av forstørrelsesapparatets hovedfiltrering over."
 
 #: ../src/iop/spektrafilm.c:4767
 msgid ""
 "yellow filtration for the preflash exposure only, Kodak CC units\n"
 "from neutral, independent of the main enlarger filtration above."
 msgstr ""
+"gul filtrering bare for forhåndseksponeringen, Kodak CC-enheter\n"
+"fra nøytral, uavhengig av forstørrelsesapparatets hovedfiltrering over."
 
 #: ../src/iop/spektrafilm.c:4784
 msgid "print diffusion filter type (same presets as the film-stage filter)"
 msgstr ""
+"diffusjonsfiltertype for kopien (samme forhåndsinnstillinger som filteret for "
+"filmtrinnet)"
 
 #: ../src/iop/spektrafilm.c:4791
 msgid ""
@@ -29018,6 +29173,13 @@ msgid ""
 "\n"
 "acts at the enlarger, so it blooms the printed image."
 msgstr ""
+"hvor mye lys som avledes inn i kopiens diffusjonsglorie (0 = av).\n"
+"\n"
+"disse filtrene selges i blendertrinn: 1/8 = 0.125, 1/4 = 0.25, 1/2 = 0.5,\n"
+"deretter 1 og 2. rulling og piltastene flytter en åttendedel av gangen.\n"
+"\n"
+"fungerer som forstørrelsesapparat, så det får det kopierte bildet til å "
+"stråle."
 
 #: ../src/iop/spektrafilm.c:4801
 msgid ""
@@ -29025,12 +29187,18 @@ msgid ""
 "is unchanged; it is spread further from each highlight. use print\n"
 "diffusion strength to change the amount."
 msgstr ""
+"skalerer radien til kopiens diffusjonsglorie. mengden lys er uendret;\n"
+"det spres lengre unna hvert høylys. bruk\n"
+"kopidiffusjonens styrke for å endre mengden."
 
 #: ../src/iop/spektrafilm.c:4807
 msgid ""
 "print diffusion halo warmth: >0 warm outer halo, <0 cool (added on\n"
 "top of the selected filter's own warmth bias)."
 msgstr ""
+"varmen til kopiens diffusjonsglorie: >0 varm ytre glorie, <0 kjølig (lagt "
+"til\n"
+"over det valgte filterets egen varmeforskyvning)."
 
 #. Split as the reference groups these, "pixel statistics" and "texture": the
 #. first describes the emulsion and rebuilds the crystals, the second only
@@ -29053,6 +29221,14 @@ msgid ""
 "the emulsion, so unlike grain strength it behaves the same on\n"
 "negative and slide film."
 msgstr ""
+"hvor grove filmens krystaller er, i forhold til filmens egne\n"
+"målte granularitet. 1.0 er tallet fra databladet.\n"
+"\n"
+"dette er kontrollen for fysisk størrelse: partiklene vokser, det blir\n"
+"færre av dem, og kornene blir både sterkere og grovere,\n"
+"på samme måte som en raskere film er annerledes enn en tregere.\n"
+"det bygger emulsjonen på nytt, så i motsetning til kornstyrke er\n"
+"oppførselen lik på negativ og lysbildefilm."
 
 #: ../src/iop/spektrafilm.c:4839
 msgid ""
@@ -29064,6 +29240,13 @@ msgid ""
 "same value reads much weaker on slide film. granularity above is the\n"
 "control for coarser grain."
 msgstr ""
+"hvor langt kornet får lov til å flytte hver piksel. det skalerer det tegnede\n"
+"resultatet, emulsjonen er uendret. 1.0 er filmnøyaktig, 0 er av.\n"
+"\n"
+"merk at korn i et negativ blir forsterket igjen av kopieringstrinnet,\n"
+"mens et lysbilde skannes direkte uten at noe forsterker det, så\n"
+"den samme verdien ser svakere ut på lysbildefilm. granulariteten over\n"
+"er kontrollen for grovere korn."
 
 #: ../src/iop/spektrafilm.c:4851
 msgid ""
@@ -29071,6 +29254,9 @@ msgid ""
 "figure. lowering it bends the noise toward a bell: grain that peaks\n"
 "in the midtones and eases off again in the densest areas."
 msgstr ""
+"hvor jevnt krystallene er distribuert, i forhold til filmens eget\n"
+"tall. senkes verdien bøyes støyen mot en bjelle: korn som er sterkest\n"
+"i mellomtonene og blir svakere i de tetteste områdene."
 
 #: ../src/iop/spektrafilm.c:4858
 msgid ""
