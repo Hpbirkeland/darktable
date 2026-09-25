@@ -1471,7 +1471,12 @@ void dt_iop_gui_init(dt_iop_module_t *module)
 {
   DT_ENTER_GUI_UPDATE();
   --darktable.bauhaus->skip_accel;
-  dt_pthread_mutex_init(&module->gui_lock, NULL);
+
+  pthread_mutexattr_t recursive_gui_lock;
+  pthread_mutexattr_init(&recursive_gui_lock);
+  pthread_mutexattr_settype(&recursive_gui_lock, PTHREAD_MUTEX_RECURSIVE);
+  dt_pthread_mutex_init(&module->gui_lock, &recursive_gui_lock);
+
   if(module->gui_init) module->gui_init(module);
   ++darktable.bauhaus->skip_accel;
   DT_LEAVE_GUI_UPDATE();
@@ -4379,6 +4384,16 @@ gboolean dt_iop_module_is_skipped(const dt_develop_t *dev,
       && dev->gui_module != module
       && (dev->gui_module->operation_tags_filter() & module->operation_tags())
       && (dev->gui_module->iop_order < module->iop_order);
+}
+
+gboolean dt_iop_module_modifies_roi_out(const dt_iop_module_t *module)
+{
+  return _iop_modify_roi_out != module->modify_roi_out;
+}
+
+gboolean dt_iop_module_modifies_roi_in(const dt_iop_module_t *module)
+{
+  return _iop_modify_roi_in != module->modify_roi_in;
 }
 
 enum

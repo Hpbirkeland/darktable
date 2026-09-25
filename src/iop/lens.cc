@@ -446,8 +446,8 @@ int legacy_params(dt_iop_module_t *self,
     n->distance = o->distance;
     n->target_geom = _lenstype_from_lensfun_lenstype(o->target_geom);
     n->tca_override = o->tca_override;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
 
     // old versions had R and B swapped
     n->tca_r = o->tca_b;
@@ -514,8 +514,8 @@ int legacy_params(dt_iop_module_t *self,
     n->distance = o->distance;
     n->target_geom = _lenstype_from_lensfun_lenstype(o->target_geom);
     n->tca_override = o->tca_override;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
 
@@ -581,8 +581,8 @@ int legacy_params(dt_iop_module_t *self,
     n->distance = o->distance;
     n->target_geom = _lenstype_from_lensfun_lenstype(o->target_geom);
     n->tca_override = o->tca_override;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
 
@@ -649,8 +649,8 @@ int legacy_params(dt_iop_module_t *self,
     n->distance = o->distance;
     n->target_geom = _lenstype_from_lensfun_lenstype(o->target_geom);
     n->tca_override = o->tca_override;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
 
@@ -721,8 +721,8 @@ int legacy_params(dt_iop_module_t *self,
     n->aperture = o->aperture;
     n->distance = o->distance;
     n->target_geom = (dt_iop_lens_lenstype_t)o->target_geom;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_override = o->tca_override;
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
@@ -795,8 +795,8 @@ int legacy_params(dt_iop_module_t *self,
     n->aperture = o->aperture;
     n->distance = o->distance;
     n->target_geom = (dt_iop_lens_lenstype_t)o->target_geom;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_override = o->tca_override;
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
@@ -870,8 +870,8 @@ int legacy_params(dt_iop_module_t *self,
     n->aperture = o->aperture;
     n->distance = o->distance;
     n->target_geom = (dt_iop_lens_lenstype_t)o->target_geom;
-    g_strlcpy(n->camera, o->camera, sizeof(n->camera));
-    g_strlcpy(n->lens, o->lens, sizeof(n->lens));
+    dt_strlcpy_fixed_to_fixed(n->camera, sizeof(n->camera), o->camera, sizeof(o->camera));
+    dt_strlcpy_fixed_to_fixed(n->lens, sizeof(n->lens), o->lens, sizeof(o->lens));
     n->tca_override = o->tca_override;
     n->tca_r = o->tca_r;
     n->tca_b = o->tca_b;
@@ -1057,6 +1057,7 @@ static void _process_lf(dt_iop_module_t *self,
 
   if(!d->lens || !d->lens->Maker || d->crop <= 0.0f)
   {
+    dt_print_pipe(DT_DEBUG_PIPE, "lensfun bypass", piece->pipe, self, piece->pipe->devid, roi_in, roi_out);
     dt_iop_image_copy_by_size((float*)ovoid, (float*)ivoid,
                               roi_out->width, roi_out->height, ch);
     return;
@@ -1329,8 +1330,11 @@ static int _process_cl_lf(dt_iop_module_t *self,
   const dt_interpolation_t *interpolation = dt_interpolation_new(DT_INTERPOLATION_USERPREF_WARP);
 
   if(!d->lens || !d->lens->Maker || d->crop <= 0.0f)
+  {
+    dt_print_pipe(DT_DEBUG_PIPE, "lensfun bypass", piece->pipe, self, piece->pipe->devid, roi_in, roi_out);
     return dt_opencl_enqueue_copy_image(devid, dev_in, dev_out,
                                         CLIMG_ORIGIN, CLIMG_ORIGIN, oregion);
+  }
 
   switch(interpolation->id)
   {
@@ -3048,7 +3052,14 @@ void process(dt_iop_module_t *self,
 {
   dt_iop_lens_data_t *d = (dt_iop_lens_data_t *)piece->data;
   dt_iop_lens_gui_data_t *g = (dt_iop_lens_gui_data_t *)self->gui_data;
-  const gboolean mask = g && g->vig_masking && dt_pipe_is_full(piece->pipe);
+  gboolean mask = FALSE;
+  if(g && dt_pipe_is_full(piece->pipe))
+  {
+    dt_iop_gui_enter_critical_section(self);
+    mask = g->vig_masking;
+    dt_iop_gui_leave_critical_section(self);
+  }
+
   const gboolean pre_vignette = mask || (d->v_strength > 0.0f);
   const gboolean pass_mode = piece->pipe->mask_display == DT_DEV_PIXELPIPE_DISPLAY_PASSTHRU;
   float *data = (float *)ivoid;
@@ -3127,7 +3138,14 @@ int process_cl(dt_iop_module_t *self,
 
   dt_iop_lens_data_t *d = (dt_iop_lens_data_t *)piece->data;
   dt_iop_lens_gui_data_t *g = (dt_iop_lens_gui_data_t *)self->gui_data;
-  const gboolean mask = g && g->vig_masking && dt_pipe_is_full(piece->pipe);
+
+  gboolean mask = FALSE;
+  if(g && dt_pipe_is_full(piece->pipe))
+  {
+    dt_iop_gui_enter_critical_section(self);
+    mask = g->vig_masking ;
+    dt_iop_gui_leave_critical_section(self);
+  }
   const gboolean pre_vignette = mask || (d->v_strength > 0.0f);
   const gboolean pass_mode = piece->pipe->mask_display == DT_DEV_PIXELPIPE_DISPLAY_PASSTHRU;
 
@@ -3310,6 +3328,10 @@ void commit_params(dt_iop_module_t *self,
     p = (dt_iop_lens_params_t *)self->default_params;
     p->method = _get_method(self, method);
   }
+
+  // stored params need not terminate the camera and lens names
+  p->camera[sizeof(p->camera) - 1] = '\0';
+  p->lens[sizeof(p->lens) - 1] = '\0';
 
   d->method = p->method;
   d->modify_flags = p->modify_flags;
@@ -4378,7 +4400,7 @@ static void _display_errors(dt_iop_module_t *self)
          "scale, target geometry and the TCA override work without a profile\n"
          "you might also want to check if your Lensfun database is up-to-date\n"
          "by running lensfun-update-data"),
-       "camera/lens not found");
+       "");
   }
   else
   {
@@ -4495,26 +4517,22 @@ static void _have_corrections_done(gpointer instance, dt_iop_module_t *self)
   gtk_widget_set_tooltip_text(GTK_WIDGET(g->message), Q_(message));
 }
 
-static void _develop_ui_pipe_finished_callback(gpointer instance,
-                                               dt_iop_module_t *self)
-{
-  _display_errors(self);
-}
-
 static void _visualize_callback(GtkWidget *quad,
                                 dt_iop_module_t *self)
 {
   DT_GUARD_GUI_UPDATE();
   dt_iop_lens_gui_data_t *g = (dt_iop_lens_gui_data_t *)self->gui_data;
+
+  dt_iop_gui_enter_critical_section(self);
   g->vig_masking = dt_bauhaus_widget_get_quad_active(quad);
+  dt_iop_gui_leave_critical_section(self);
+
   dt_dev_reprocess_center(self->dev, self->iop_order);
 }
 
 void gui_init(dt_iop_module_t *self)
 {
   dt_iop_lens_gui_data_t *g = IOP_GUI_ALLOC(lens);
-
-  DT_CONTROL_SIGNAL_HANDLE(DT_SIGNAL_DEVELOP_UI_PIPE_FINISHED, _develop_ui_pipe_finished_callback);
 
   dt_iop_gui_enter_critical_section(self); // not actually needed,
                                            // we're the only one with
@@ -4760,9 +4778,12 @@ void gui_focus(dt_iop_module_t *self, gboolean in)
   dt_iop_lens_gui_data_t *g = (dt_iop_lens_gui_data_t *)self->gui_data;
   if(!in)
   {
+    dt_iop_gui_enter_critical_section(self);
     const gboolean was_visualize = g->vig_masking;
     dt_bauhaus_widget_set_quad_active(g->v_strength, FALSE);
     g->vig_masking = FALSE;
+    dt_iop_gui_leave_critical_section(self);
+
     if(was_visualize)
       dt_dev_reprocess_center(self->dev, self->iop_order);
   }
@@ -4786,6 +4807,10 @@ void gui_update(dt_iop_module_t *self)
     memcpy(self->params, self->default_params, sizeof(dt_iop_lens_params_t));
     p->method = _get_method(self, method);
   }
+
+  // the GUI handlers read the stored camera and lens names as C strings
+  p->camera[sizeof(p->camera) - 1] = '\0';
+  p->lens[sizeof(p->lens) - 1] = '\0';
 
   dt_iop_lens_global_data_t *gd = (dt_iop_lens_global_data_t *)self->global_data;
   lfDatabase *dt_iop_lensfun_db = (lfDatabase *)gd->db;
