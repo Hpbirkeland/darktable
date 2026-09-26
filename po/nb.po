@@ -11,7 +11,11 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-19 17:59+0200\n"
+<<<<<<< HEAD
 "PO-Revision-Date: 2026-09-25 23:59+0200\n"
+=======
+"PO-Revision-Date: 2026-09-25 22:21+0200\n"
+>>>>>>> 3cf3dc58278e5ef5aee68b46137189fe1690a899
 "Last-Translator: Hans Petter Birkeland <hpbirkeland@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb\n"
@@ -28316,7 +28320,11 @@ msgid ""
 "sensitive transitions"
 msgstr ""
 "uttoningens presisjon: høyere verdier gir mykere, mindre kantfølsomme "
+<<<<<<< HEAD
 "overganger"
+=======
+"overganger."
+>>>>>>> 3cf3dc58278e5ef5aee68b46137189fe1690a899
 
 #: ../src/iop/satcurvergb.c:2195
 #, fuzzy
