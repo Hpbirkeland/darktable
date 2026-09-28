@@ -1363,6 +1363,8 @@ void dt_opencl_init(dt_opencl_t *cl,
           an additional conf key or falling back to clplatform_other
       */
       else if((strcmp(platform_key, "clplatform_intelropenclgraphics") == 0)
+           || (strcmp(platform_key, "clplatform_intelropenclgraphicsintegrated") == 0)
+           || (strcmp(platform_key, "clplatform_intelropenclgraphicsdiscrete") == 0)
            || (strcmp(platform_key, "clplatform_intelropencluhdgraphics") == 0)
            || (strcmp(platform_key, "clplatform_intelropenclirisgraphics") == 0)
            || (strcmp(platform_key, "clplatform_intelropenclirisprographics") == 0))
@@ -2650,8 +2652,11 @@ void dt_opencl_free_kernel(const int kernel)
   dt_pthread_mutex_lock(&cl->lock);
   for(int dev = 0; dev < cl->num_devs; dev++)
   {
-    cl->dev[dev].kernel_used[kernel] = FALSE;
-    (cl->dlocl->symbols->dt_clReleaseKernel)(cl->dev[dev].kernel[kernel]);
+    if(cl->dev[dev].kernel_used[kernel])
+    {
+      cl->dev[dev].kernel_used[kernel] = FALSE;
+      (cl->dlocl->symbols->dt_clReleaseKernel)(cl->dev[dev].kernel[kernel]);
+    }
   }
   dt_pthread_mutex_unlock(&cl->lock);
 }

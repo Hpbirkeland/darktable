@@ -142,6 +142,9 @@ changes (where available).
 - Some safety checks when switching to the quick access panel were
   added.
 
+- On the color equalizer module a new collapside section with the
+  color sliders has been added.
+
 - The list of color checker charts in the color calibration module now
   has one entry for the Datacolor SpyderCheckr 24 and one for the
   SpyderCheckr 48. As far as we know, there never was a separate 2018
@@ -161,8 +164,14 @@ changes (where available).
   demosaic onwards, so adjusting a mask or toggling the mask overlay
   recomputed most of the pipeline each time.
 
+- Reduced memory requirements of the mask feathering guided filter
+
 - Separated the demosaicer's crop-and-scale step into a new hidden
   module to improve cache efficiency and UI responsiveness.
+
+- Add a OpenCL code path to tone equalizer which gives around
+  6-20x faster processing times in comparison to CPU code path,
+  dependening on CPU & GPU.
 
 ## Other Changes
 
@@ -382,6 +391,16 @@ changes (where available).
 
 - Fixed the color calibration module not using the gray patch closest to
   middle gray on the Datacolor SpyderCheckr 48 and Photo.
+
+- Fixed a thin line of pixels along the outer edge of a gradient mask
+  that the module's effect was applied to in reverse, most visible on
+  gradients with a sharp transition.
+
+- Fixed XMP sidecar files not being written for images whose creator,
+  description or copyright Exif fields (e.g. Artist, Canon OwnerName)
+  contain non-ASCII characters such as umlauts stored by the camera in
+  a legacy encoding. These fields are now converted to UTF-8 on import.
+  Use "refresh EXIF" on already imported images to fix them.
 
 ## Lua
 
