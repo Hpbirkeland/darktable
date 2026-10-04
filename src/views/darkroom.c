@@ -25,6 +25,7 @@
 #include "common/colorspaces.h"
 #include "common/darktable.h"
 #include "common/debug.h"
+#include "common/dtdata.h"
 #include "common/file_location.h"
 #include "common/focus_peaking.h"
 #include "common/history.h"
@@ -216,7 +217,7 @@ static void _preview_pipe_zoom_correction(dt_develop_t *dev, float *cx, float *c
   // Full-pipe viewport centre in normalised coords
   float full_pts[2] = { dev->full.zoom_x, dev->full.zoom_y };
   dt_dev_distort_transform_plus(dev, dev->full.pipe,
-                                0.0f, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, full_pts, 1);
+                                0, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, full_pts, 1);
   const float zoom_x_full = full_pts[0] / full_wd - 0.5f;
   const float zoom_y_full = full_pts[1] / full_ht - 0.5f;
 
@@ -228,7 +229,7 @@ static void _preview_pipe_zoom_correction(dt_develop_t *dev, float *cx, float *c
     dev->full.zoom_y * prev_ih / full_ih
   };
   dt_dev_distort_transform_plus(dev, dev->preview_pipe,
-                                0.0f, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, prev_pts, 1);
+                                0, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, prev_pts, 1);
   const float zoom_x_vp = prev_pts[0] / pp_wd - 0.5f;
   const float zoom_y_vp = prev_pts[1] / pp_ht - 0.5f;
 
@@ -1021,7 +1022,7 @@ void expose(dt_view_t *self,
     port->zoom_y * prev_ih / full_ih
   };
   dt_dev_distort_transform_plus(dev, dev->preview_pipe,
-                                0.0f, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, prev_pts, 1);
+                                0, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, prev_pts, 1);
   const float pp_wd = dev->preview_pipe->processed_width;
   const float pp_ht = dev->preview_pipe->processed_height;
   // Preview-pipe equivalent of the (real) full-pipe viewport centre. Kept
@@ -1416,6 +1417,7 @@ static void _dev_change_image(dt_develop_t *dev,
 
   // commit image ops to db
   dt_dev_write_history(dev);
+  dt_dtdata_sweep(dev->image_storage.id);
 
   dev->requested_id = imgid;
   dt_dev_clear_chroma_troubles(dev);
@@ -4296,6 +4298,7 @@ void leave(dt_view_t *self)
   dt_dev_write_history(dev);
 
   const dt_imgid_t imgid = dev->image_storage.id;
+  dt_dtdata_sweep(imgid);
 
   dt_overlay_add_from_history(imgid);
 

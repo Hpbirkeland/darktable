@@ -16,6 +16,7 @@
     along with darktable.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "common/dtdata.h"
 #include "common/history.h"
 #include "common/collection.h"
 #include "common/darktable.h"
@@ -964,6 +965,15 @@ gboolean dt_history_copy_and_paste_on_image(const dt_imgid_t imgid,
     ? _history_copy_and_paste_on_image_merge(imgid, dest_imgid, ops, copy_iop_order, copy_full)
     : _history_copy_and_paste_on_image_overwrite(imgid, dest_imgid, ops, copy_iop_order, copy_full);
 
+  // params travel verbatim, so raster entries they reference must too;
+  // a failure is reported, not unwound: the masks just render empty
+  if(!dt_dtdata_merge(imgid, dest_imgid))
+  {
+    dt_print(DT_DEBUG_ALWAYS, "[dt_history_copy_and_paste_on_image] raster masks of image %d"
+             " could not be copied to image %d", imgid, dest_imgid);
+    dt_control_log(_("raster masks could not be copied to the pasted history"));
+  }
+
   if(iop_list)
   {
     dt_ioppr_write_iop_order_list(iop_list, dest_imgid);
@@ -1469,6 +1479,8 @@ gboolean dt_history_compress(const dt_imgid_t imgid)
     dt_image_set_history_end(imgid, done);
 
     dt_image_write_sidecar_file(imgid);
+    // no undo on this path, so entries the compressed history dropped are final
+    dt_dtdata_sweep(imgid);
   }
   dt_unlock_image(imgid);
   dt_history_hash_write_from_history(imgid, DT_HISTORY_HASH_CURRENT);
@@ -1939,7 +1951,13 @@ gboolean dt_history_copy(const dt_imgid_t imgid)
   if(!dt_is_valid_imgid(imgid)) return FALSE;
 
   darktable.view_manager->copy_paste.copied_imageid = imgid;
+  // a plain copy of the whole stack still has to skip the modules flagged as
+  // unsafe to copy, see dt_history_module_skip_copy(). Only a duplicate of the
+  // same image, where copy_full is passed explicitly, copies everything.
   darktable.view_manager->copy_paste.full_copy = FALSE;
+
+  // in full copy mode, we also copy the module iop order
+  darktable.view_manager->copy_paste.copy_iop_order = TRUE;
 
   if(darktable.view_manager->copy_paste.selops)
   {
@@ -1958,7 +1976,8 @@ gboolean dt_history_copy_parts(const dt_imgid_t imgid)
 {
   if(dt_history_copy(imgid))
   {
-    // we want to copy all history and let user select the parts needed
+    // the user picks the modules in the dialog, so let anything they
+    // tick through.
     darktable.view_manager->copy_paste.full_copy = TRUE;
 
     // run dialog, it will insert into selops the selected module

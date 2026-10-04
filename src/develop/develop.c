@@ -78,10 +78,7 @@ void dt_dev_init(dt_develop_t *dev,
   dev->gui_leaving = FALSE;
   dev->gui_synch = FALSE;
 
-  pthread_mutexattr_t recursive_locking;
-  pthread_mutexattr_init(&recursive_locking);
-  pthread_mutexattr_settype(&recursive_locking, PTHREAD_MUTEX_RECURSIVE);
-  dt_pthread_mutex_init(&dev->history_mutex, &recursive_locking);
+  dt_pthread_recursive_mutex_init(&dev->history_mutex);
 
   dev->snapshot_id = -1;
   dev->history_end = 0;
@@ -3649,7 +3646,7 @@ void dt_dev_get_viewport_params(dt_dev_viewport_t *port,
       float pts[2] = { port->zoom_x, port->zoom_y };
       dt_dev_distort_transform_plus(port->dev ? port->dev : darktable.develop,
                                     port->pipe,
-                                    0.0f,
+                                    0,
                                     DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY,
                                     pts,
                                     1);
@@ -3749,7 +3746,8 @@ void dt_dev_exposure_handle_event(int n_press, gdouble delta,
                                   GdkModifierType state,
                                   const gboolean is_blackpoint)
 {
-  if(darktable.develop->proxy.exposure.handle_event)
+  if(dt_view_get_current() == DT_VIEW_DARKROOM
+      && darktable.develop->proxy.exposure.handle_event)
     darktable.develop->proxy.exposure.handle_event(n_press, delta, state, is_blackpoint);
 }
 
@@ -4016,7 +4014,7 @@ gboolean dt_dev_distort_transform(dt_develop_t *dev,
                                   const size_t points_count)
 {
   return dt_dev_distort_transform_plus(
-    dev, dev->preview_pipe, 0.0f, DT_DEV_TRANSFORM_DIR_ALL, points, points_count);
+    dev, dev->preview_pipe, 0, DT_DEV_TRANSFORM_DIR_ALL, points, points_count);
 }
 
 gboolean dt_dev_distort_backtransform(dt_develop_t *dev,
@@ -4024,12 +4022,12 @@ gboolean dt_dev_distort_backtransform(dt_develop_t *dev,
                                       const size_t points_count)
 {
   return dt_dev_distort_backtransform_plus(
-    dev, dev->preview_pipe, 0.0f, DT_DEV_TRANSFORM_DIR_ALL, points, points_count);
+    dev, dev->preview_pipe, 0, DT_DEV_TRANSFORM_DIR_ALL, points, points_count);
 }
 
 gboolean dt_dev_distort_transform_plus(dt_develop_t *dev,
                                        dt_dev_pixelpipe_t *pipe,
-                                       const double iop_order,
+                                       const int iop_order,
                                        const dt_dev_transform_direction_t transf_direction,
                                        float *points,
                                        const size_t points_count)
@@ -4044,7 +4042,7 @@ gboolean dt_dev_distort_transform_plus(dt_develop_t *dev,
 
 gboolean dt_dev_distort_backtransform_plus(dt_develop_t *dev,
                                            dt_dev_pixelpipe_t *pipe,
-                                           const double iop_order,
+                                           const int iop_order,
                                            const dt_dev_transform_direction_t transf_direction,
                                            float *points,
                                            const size_t points_count)
@@ -4075,7 +4073,7 @@ dt_dev_pixelpipe_iop_t *dt_dev_distort_get_iop_pipe(dt_develop_t *dev,
 
 dt_hash_t dt_dev_hash_plus(dt_develop_t *dev,
                            dt_dev_pixelpipe_t *pipe,
-                           const double iop_order,
+                           const int iop_order,
                            const dt_dev_transform_direction_t transf_direction)
 {
   dt_hash_t hash = DT_INITHASH;
@@ -4112,7 +4110,7 @@ dt_hash_t dt_dev_hash_plus(dt_develop_t *dev,
 
 static gboolean _dev_wait_hash(dt_develop_t *dev,
                                dt_dev_pixelpipe_t *pipe,
-                               const double iop_order,
+                               const int iop_order,
                                const dt_dev_transform_direction_t transf_direction,
                                dt_pthread_mutex_t *lock,
                                const volatile dt_hash_t *const hash)
@@ -4158,7 +4156,7 @@ static gboolean _dev_wait_hash(dt_develop_t *dev,
 
 gboolean dt_dev_sync_pixelpipe_hash(dt_develop_t *dev,
                                     dt_dev_pixelpipe_t *pipe,
-                                    const double iop_order,
+                                    const int iop_order,
                                     const dt_dev_transform_direction_t transf_direction,
                                     dt_pthread_mutex_t *lock,
                                     const volatile dt_hash_t *const hash)
@@ -4182,7 +4180,7 @@ gboolean dt_dev_sync_pixelpipe_hash(dt_develop_t *dev,
 
 dt_hash_t dt_dev_hash_distort_plus(dt_develop_t *dev,
                                    dt_dev_pixelpipe_t *pipe,
-                                   const double iop_order,
+                                   const int iop_order,
                                    const dt_dev_transform_direction_t transf_direction)
 {
   dt_hash_t hash = DT_INITHASH;

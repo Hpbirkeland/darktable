@@ -150,6 +150,18 @@ changes (where available).
   SpyderCheckr 48. As far as we know, there never was a separate 2018
   version of these charts.
 
+- Added a "copy to clipboard" export storage, which places the
+  exported images on the system clipboard.
+
+- The lens correction module now warns when it applies Lensfun
+  vignetting correction to a Panasonic RW2 or Olympus ORF file shot
+  with the camera's shading compensation on, which can overcorrect
+  the corners.
+
+- In the "select parts to copy" and "select parts to paste" history
+  dialogs, the module order is now a check box below the item list
+  instead of a last entry in the list itself.
+
 ## Performance Improvements
 
 - Replaced quadratic XMP history writes with a linear algorithm.
@@ -169,11 +181,37 @@ changes (where available).
 - Separated the demosaicer's crop-and-scale step into a new hidden
   module to improve cache efficiency and UI responsiveness.
 
-- Add a OpenCL code path to tone equalizer which gives around
-  6-20x faster processing times in comparison to CPU code path,
-  dependening on CPU & GPU.
+- Add a OpenCL code path to tone equalizer which gives around 6-20x faster
+  processing times in comparison to CPU code path, depending on CPU & GPU.
+
+- Hovering over and dragging nodes of long drawn brush strokes and paths
+  is much faster, as the mask overlay is no longer redrawn on every mouse
+  move and long outlines are drawn with far fewer points.
 
 ## Other Changes
+
+- PNG exports using a PQ output color profile now include content light
+  level metadata (MaxCLL and MaxFALL) for HDR tone mapping.
+
+- A new `.dtdata` sidecar next to the XMP holds per-pixel edit data
+  such as raster masks. It is only created for images that use such
+  data, and only when sidecar writing is enabled; most images never get
+  one. It follows the image when it is moved, renamed, duplicated or
+  deleted.
+
+- HEIF exports using a PQ output color profile now include HDR10 content
+  light level metadata (MaxCLL and MaxFALL) when built with libheif 1.15.0
+  or newer.
+
+- AVIF exports using a PQ output color profile now include HDR10 content
+  light level metadata (MaxCLL and MaxFALL) when built with libavif 1.0.0
+  or newer.
+
+- The external raster masks module imports its mask into the image's
+  `.dtdata` sidecar instead of referencing a file in a root folder.
+  Each instance holds one imported mask. Existing edits that point at
+  a folder keep working, and the folder chooser remains available when
+  sidecar writing is set to "never".
 
 - Added a new collection filter for the original image dimensions.
 
@@ -192,6 +230,16 @@ changes (where available).
 - Model packages can now declare their ONNX Runtime graph
   optimization level, so models that misbehave under aggressive
   optimization no longer need workarounds in feature code.
+
+- Added support for DNG files providing a forward matrix. These
+  files will have an additonal "DNG forward matrix" profile in
+  colorin module, selectable manually. The existing "embedded
+  matrix" profile remains the default for fresh imports and
+  reloading defaults.
+
+- The highlights module will be disabled automatically when a raw
+  image with a clean history is opended in darkroom the first time
+  and the opposed algorithm did not find clipped photosites.
 
 - Panasonic RW2 files now offer embedded lens distortion correction,
   covering built-in and Lumix-branded lenses that lensfun has no
@@ -235,10 +283,27 @@ changes (where available).
   once into each person's folder rather than into one "John,Jane"
   folder.
 
+- Import filename patterns gained `$(CONFLICT[n])`, a counter that is
+  empty unless the file name is already taken, so burst shots named by
+  capture time no longer clash.
+
+- Added `--print-paths` and `--print-paths-as-flags` to darktable
+  and darktable-cli. These print the resolved configdir, cachedir,
+  tmpdir, datadir, moduledir, localedir and library paths for the
+  current install (honoring path overrides), then exit. The
+  `-as-flags` form emits a single line of `--flag value` pairs
+  ready to splice into another invocation.
+
 ## Bug Fixes
+
+- Fixed HEIF export compilation with libheif versions older than 1.15.0,
+  and with versions older than 1.16.0 when libsharpyuv is available.
 
 - Do not convert the pipe input in place for blending, which may result
   in a corrputed buffer.
+
+- Fixed an OpenCL bug causing Lab colorspace overlays showing as solid
+  colors.
 
 - Fixed a trashing error dialog when deleting a virgin duplicate of an
   image while sidecar creation is set to "after edit".
@@ -396,11 +461,31 @@ changes (where available).
   that the module's effect was applied to in reverse, most visible on
   gradients with a sharp transition.
 
+- Fixed a bug in OpenCL demosaicer leading to slighly increased chroma
+  differences compared with CPU code.
+
 - Fixed XMP sidecar files not being written for images whose creator,
   description or copyright Exif fields (e.g. Artist, Canon OwnerName)
   contain non-ASCII characters such as umlauts stored by the camera in
   a legacy encoding. These fields are now converted to UTF-8 on import.
   Use "refresh EXIF" on already imported images to fix them.
+
+- Fixed rotate and perspective occasionally computing its automatic
+  crop from a mismatched preview size, which could leave the crop box
+  slightly wrong until the module was adjusted again.
+
+- Fixed a crash on Wayland when disconnecting a monitor.
+
+- Fixed raw denoise on X-Trans images giving slightly different
+  results depending on the number of CPU threads, and occasionally
+  wrong colors near the left or right image edge.
+
+- Copying a whole history stack no longer carries over the module order
+  that was selected in an earlier "copy parts of the history" dialog.
+
+- Fixed the lens correction module reporting distortion correction as
+  applied from embedded metadata when the file only carries chromatic
+  aberration correction data.
 
 ## Lua
 
@@ -444,7 +529,8 @@ changes (where available).
 
 ### Mandatory
 
-- N/A
+- libarchive, previously only needed for AI model downloads, is now
+  required for the `.dtdata` sidecar
 
 ### Optional
 

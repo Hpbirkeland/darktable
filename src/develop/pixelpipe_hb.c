@@ -304,9 +304,9 @@ static gboolean _dev_pixelpipe_init_cached(dt_dev_pixelpipe_t *pipe,
   pipe->average_delay = 1000 * delay;
   pipe->input_timestamp = 0;
   pipe->levels = IMAGEIO_RGB | IMAGEIO_INT8;
-  dt_pthread_mutex_init(&pipe->mutex, NULL);
-  dt_pthread_mutex_init(&pipe->backbuf_mutex, NULL);
-  dt_pthread_mutex_init(&pipe->busy_mutex, NULL);
+  dt_pthread_mutex_init(&pipe->mutex);
+  dt_pthread_mutex_init(&pipe->backbuf_mutex);
+  dt_pthread_mutex_init(&pipe->busy_mutex);
   pipe->icc_type = DT_COLORSPACE_NONE;
   pipe->icc_filename = NULL;
   pipe->icc_intent = DT_INTENT_LAST;
@@ -3430,7 +3430,7 @@ gboolean dt_dev_pixelpipe_process(dt_dev_pixelpipe_t *pipe,
 
   float zx = (x + 0.5f * width) / scale, zy = (y + 0.5f * height) / scale;
   dt_dev_zoom_pos_t pts = { zx, zy, zx + 1000.f, zy, zx, zy + 1000.f };
-  dt_dev_distort_backtransform_plus(dev, pipe, 0.0f, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, pts, 3);
+  dt_dev_distort_backtransform_plus(dev, pipe, 0, DT_DEV_TRANSFORM_DIR_ALL_GEOMETRY, pts, 3);
 
   // get a snapshot of mask list. Serialized against GUI-thread mutation of
   // dev->forms/form->points (mask editing) via the same history_mutex used
