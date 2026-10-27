@@ -692,6 +692,15 @@ changes (where available).
   taller than the panel, such as AgX or spektrafilm: clicking a tab
   scrolled the panel until the tab row was at the top.
 
+- Fixed retouch shapes and drawn masks landing in the wrong place when
+  the scale pixels module was enabled: they were shrunk toward the
+  top-left corner of the image instead of being stretched with it.
+
+- Fixed black output from filmic rgb's v1 and v3 color science, when
+  no work profile is used for the luminance, and wrong alpha from its
+  gaussian and poissonian noise, on macOS OpenCL: the kernels read
+  vector lanes they had not set.
+
 ## Lua
 
 ### API Version
