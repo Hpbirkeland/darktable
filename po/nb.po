@@ -84,7 +84,7 @@ msgstr "ved avslutning"
 #: ../build/bin/conf_gen.h:1962 ../build/bin/conf_gen.h:2009
 msgctxt "preferences"
 msgid "small"
-msgstr "liten"
+msgstr "lite"
 
 #: ../build/bin/conf_gen.h:411 ../build/bin/conf_gen.h:719
 #: ../build/bin/preferences_gen.h:4115 ../build/bin/preferences_gen.h:4162
@@ -95,7 +95,7 @@ msgstr "standard"
 #: ../build/bin/conf_gen.h:412 ../build/bin/conf_gen.h:4490
 msgctxt "preferences"
 msgid "large"
-msgstr "stor"
+msgstr "mye"
 
 #: ../build/bin/conf_gen.h:486
 msgctxt "preferences"
@@ -132,12 +132,12 @@ msgstr "ufølsom"
 #: ../build/bin/conf_gen.h:720
 msgctxt "preferences"
 msgid "multiple GPUs"
-msgstr "flere grafikkprosessorer"
+msgstr "flere GPU'er"
 
 #: ../build/bin/conf_gen.h:721
 msgctxt "preferences"
 msgid "very fast GPU"
-msgstr "svært rask grafikkprosessor"
+msgstr "svært rask GPU"
 
 #: ../build/bin/conf_gen.h:1190 ../build/bin/preferences_gen.h:5403
 msgctxt "preferences"
@@ -10819,7 +10819,6 @@ msgid "%s slider: linear scale"
 msgstr "%s glider: lineær skala"
 
 #: ../src/develop/blend_gui.c:1804
-#| msgid "long"
 msgid "log"
 msgstr "log"
 
