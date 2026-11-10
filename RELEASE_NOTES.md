@@ -117,7 +117,17 @@ changes (where available).
   manager now drive the same controls in the panel. Existing masks are
   converted when an edit is opened and render as before.
 
+- DNG files carrying an OpcodeList3 GainMap, such as those written
+  by DJI drones, now have it applied during demosaicing. This
+  corrects the lens shading the camera recorded but left in the raw
+  data. Existing edits are left unchanged; new edits get it by
+  default.
+
 ## UI/UX Improvements
+
+- Added back and forward navigation in collections, with user-assignable
+  shortcuts. Navigation remembers collection rules and thumbnail scroll
+  positions for up to 32 visits during the current session.
 
 - The code has received a large set of changes in preparation of the
   Gtk4 migration.
@@ -231,6 +241,9 @@ changes (where available).
   controls and its camera presets, because the white balance is then
   controlled in color calibration.
 
+- The recent collections module now handles single or double click
+  according to the preference setting for collections.
+
 ## Performance Improvements
 
 - New edits convert the input color profile directly to the working RGB
@@ -289,6 +302,11 @@ changes (where available).
   paths is much faster, as the mask overlay is no longer redrawn on
   every mouse move and long outlines are drawn with far fewer points.
 
+- Drawn masks render faster, most of all masks with nested groups or
+  shapes reused by several modules: each group no longer clears and
+  combines a full-size buffer just to copy in its first shape, and
+  folds each shape only over the part of the image it covers.
+
 - Lens correction with lensfun is faster on the OpenCL path: lensfun
   is now asked for its corrections on a coarse grid instead of for
   every pixel, so the CPU no longer computes and uploads hundreds of
@@ -311,6 +329,10 @@ changes (where available).
 - darktable-cli uses less memory when exporting many images: it no
   longer keeps the decoded raw of every exported image in memory
   until its cache is full.
+
+- darktable keeps fewer decoded raws in memory: the full-size image
+  cache now holds one image per worker thread plus one, instead of
+  twice the number of worker threads.
 
 - Modules showing a histogram of their input (levels, rgb levels, rgb
   curve, tone curve and color zones) now count it on the OpenCL device
@@ -337,6 +359,9 @@ changes (where available).
   LUT sampled from LittleCMS, instead of sending the image back to the
   CPU. The "always use LittleCMS 2" export preference still applies the
   exact transform on the CPU.
+
+- The LMMSE demosaicer can now run on the OpenCL device instead of
+  sending the image back to the CPU for the demosaic.
 
 ## Other Changes
 
@@ -783,6 +808,13 @@ changes (where available).
 - Fixed raw denoise using pixels of the wrong color near the top
   corners of some X-Trans images.
 
+- Fixed raw denoise on X-Trans images giving different results
+  depending on white balance's "prepare data for color calibration"
+  setting: with highlight reconstruction in inpaint opposed or
+  segmentation mode, clipped highlights were rebuilt with a white
+  balance correction meant for white-balanced data, although raw
+  denoise runs without white balance.
+
 - Fixed possible crashes after removing an image that had snapshots
   from the library, while either a snapshot was shown for comparison
   or all ten snapshot slots were in use.
@@ -905,6 +937,13 @@ changes (where available).
 - Fixed the wrong raster mask being applied when three or more external
   raster masks were used in one edit.
 
+- Fixed memory leaks of libgphoto2 event data, CameraFile objects, and
+  strdup'd filenames during tether polling and download.
+
+- Fixed tether mode treating non-fatal PTP errors as a lost camera
+  connection; only clear I/O / claim / missing-device failures now force
+  remount and leave tethering.
+
 - Fixed diffuse or sharpen giving a different result on the CPU than
   with OpenCL whenever an anisotropy was set: the CPU path computed the
   diffusion weights with a coarse approximation of the exponential.
@@ -920,6 +959,8 @@ changes (where available).
   denoise giving a different result with OpenCL than on the CPU: the
   OpenCL path gave the horizontal neighbors twice their weight. Edits
   using them may look slightly different when exported with OpenCL.
+
+- Fixed tethered bracket capture progress using the wrong image total.
 
 - The non-local means modes of denoise (profiled) and astrophoto
   denoise now treat the image edges the same way on the CPU and with
