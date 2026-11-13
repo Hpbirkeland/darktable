@@ -4056,7 +4056,7 @@ msgstr "egendefinert"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:516
 msgid "as shot in camera"
-msgstr "som skutt i kamera"
+msgstr "som fotografert i kamera"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:517
 msgid "from the white balance module"
@@ -24179,7 +24179,7 @@ msgstr ""
 "fargekalibreringens 'fra hvitbalansemodulen' lyskilde\n"
 "følger bare denne modulen hvis 'forbered data for fargekalibrering'\n"
 "er valgt. ellers gir den samme resultat som dens\n"
-"'som skutt'-lyskilde.\n"
+"'som fotografert'-lyskilde.\n"
 "hvis disse koeffisientene ble målt på en D65 skjerm for\n"
 "å erstatte kamerareferansen, velg en annen lyskilde\n"
 "i fargekalibrering"
@@ -24199,7 +24199,7 @@ msgid ""
 msgstr ""
 "denne lyskilden følger bare hvitbalansemodulen hvis\n"
 "'forbered data for fargekalibrering' er valgt der. ellers\n"
-"gir den samme resultat som 'som skutt'-lyskilden.\n"
+"gir den samme resultat som 'som fotografert'-lyskilden.\n"
 "hvis hvitbalansemodulens koeffisienter ble målt på en\n"
 "D65 skjerm for å erstatte kamerareferansen, velg\n"
 "en annen lyskilde her"
@@ -32553,7 +32553,7 @@ msgstr "kunne ikke lese kamera hvitbalanse fra `%s'!"
 #: ../src/iop/temperature.c:1756
 msgctxt "white balance"
 msgid "as shot"
-msgstr "som skutt"
+msgstr "som fotografert"
 
 #. old "spot", reason: describes exactly what'll happen
 #: ../src/iop/temperature.c:1759
@@ -32606,11 +32606,11 @@ msgstr "koeffisient for smaragdrød kanal"
 
 #: ../src/iop/temperature.c:2184
 msgid "as shot"
-msgstr "som skutt"
+msgstr "som fotografert"
 
 #: ../src/iop/temperature.c:2187
 msgid "set white balance to as shot"
-msgstr "sett hvitbalanse til som skutt"
+msgstr "sett hvitbalanse til som fotografert"
 
 #: ../src/iop/temperature.c:2197
 msgid "from image area"
