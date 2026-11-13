@@ -2340,12 +2340,12 @@ gboolean _iop_validate_params(dt_introspection_field_t *field,
        field->UShort.Default);
     break;
   case DT_INTROSPECTION_TYPE_INT8:
-    all_ok = (*(uint8_t*)p >= field->Int8.Min && *(uint8_t*)p <= field->Int8.Max);
+    all_ok = (*(int8_t*)p >= field->Int8.Min && *(int8_t*)p <= field->Int8.Max);
     values = g_strdup_printf
-      (" (%ud - [%ud..%ud] : default %ud)",
-       *(uint8_t*)p,
+      (" (%d - [%d..%d] : default %d)",
+       *(int8_t*)p,
        field->Int8.Min, field->Int8.Max,
-       field->Int8.Default);
+       (int8_t)field->Int8.Default);
     break;
   case DT_INTROSPECTION_TYPE_CHAR:
     all_ok = (*(char*)p >= field->Char.Min && *(char*)p <= field->Char.Max);
@@ -3722,6 +3722,11 @@ void dt_iop_gui_set_expander(dt_iop_module_t *module)
   GtkWidget *iopw = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
   GtkWidget *expander = dtgtk_expander_new(header, iopw);
   gtk_widget_set_name(expander, "iop-expander");
+
+  /* per-module CSS class to enable styling of individual processing modules */
+  char css_class[160] = { 0 };
+  snprintf(css_class, sizeof(css_class), "dt_iop_%s", module->op);
+  dt_gui_add_class(expander, css_class);
 
   GtkWidget *header_evb = dtgtk_expander_get_header_event_box(DTGTK_EXPANDER(expander));
   GtkWidget *body_evb = dtgtk_expander_get_body_event_box(DTGTK_EXPANDER(expander));

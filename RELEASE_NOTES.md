@@ -424,6 +424,10 @@ changes (where available).
 
 - Added a preference to disable automatic AI model update checks,
   with a manual check button for when it is off.
+  
+- Added css classes for individual processing and utility modules to
+  enable styling of individual modules (e.g. coloring the header of 
+  just the export module to make navigation of the panels easier).
 
 - Added a compression option for the TIFF files written by neural
   restore denoise and upscale, matching the TIFF export module.
@@ -542,7 +546,22 @@ changes (where available).
 - The LibRaw loader now supports X-Trans sensors. Previously, RAFs
   routed to LibRaw via the libraw_extensions setting came out red.
 
+- White balance set to "as shot" or "camera reference" now uses the
+  edited image's own multipliers when it is pasted from another image,
+  or applied through a style or preset, instead of the multipliers of
+  the image it was copied from. This also changes existing edits that
+  received such a white balance from another image, which mostly
+  removes a color cast. To give several images the same multipliers,
+  for example a series shot under one light, switch the white balance
+  of the image to copy from to "user modified" first. Series that got
+  one white balance by pasting "as shot" in an earlier version now use
+  each image's own as-shot multipliers, and need to be pasted again
+  that way.
+
 ## Bug Fixes
+
+- Fixed bands of slightly wrong colors in images demosaiced with AMaZE
+  whose height or width is 1 to 15 pixels more than a multiple of 128.
 
 - Fixed faint seams on a 112 pixel grid in images demosaiced with
   LMMSE, where each tile read leftover data from the previous tile.
@@ -796,6 +815,9 @@ changes (where available).
 - Copying a whole history stack no longer carries over the module order
   that was selected in an earlier "copy parts of the history" dialog.
 
+- Fixed lens correction with lensfun on the OpenCL path producing
+  different pixels from the CPU path along the image border.
+
 - Fixed the lens correction module reporting distortion correction as
   applied from embedded metadata when the file only carries chromatic
   aberration correction data.
@@ -1020,6 +1042,31 @@ changes (where available).
 - Fixed scale pixels output shifted by a fraction of a pixel in each
   tile when the image was processed in tiles.
 
+- Fixed a crash when double-clicking while adding gradient masks
+  continuously (ctrl+click on the gradient shape button).
+
+- Fixed defining a key + right-click shortcut in shortcut mapping mode.
+  The mouse button release was taken as mapping mode's own right-click
+  instead of completing the shortcut, so the shortcut was only assigned
+  when the key was let go, as a long key press if the key had been held
+  longer than a double-click.
+
+- Fixed a crash when defining a key + mouse click shortcut in the
+  shortcuts dialog and letting go of the key quickly after the click.
+
+- Fixed color picker means drifting over large areas on the CPU. A hue
+  mean over an area of reds, whose hues sit on both sides of the hue
+  wrap-around, could be off by several percent.
+
+- Fixed Quick Access panel entries being duplicated each time the
+  module layout manager was reopened, for layouts with no module
+  groups other than the Quick Access panel. Entries already
+  duplicated by this bug are merged when the layout is loaded.
+
+- Fixed the local copy indicator, and other thumbnail overlay icons, being
+  misplaced after switching away from the "overlays block on mouse hover"
+  mode, and the local copy indicator showing in "no overlays" mode.
+
 ## Lua
 
 ### API Version
@@ -1094,6 +1141,7 @@ changes (where available).
 
 ### Base Support
 
+- Canon EOS C50 (requires LibRaw 0.23 or newer)
 - Canon EOS R50 V (requires LibRaw 0.23 or newer)
 - Canon EOS R6 Mark III (requires LibRaw 0.23 or newer)
 - Canon PowerShot V1 (requires LibRaw 0.23 or newer)
